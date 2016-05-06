@@ -1,0 +1,7 @@
+#pragma once
+#define HEIGHT 500
+#define WIDTH 800
+#define MACHINETIMER 500
+#define NEWMACHINESNUMBER 3
+#define HUMANDELAY 1
+#define MACHINEDELAY 2
