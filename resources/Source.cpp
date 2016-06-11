@@ -6,6 +6,7 @@
 #include "State.h"
 #include "Bullet.h"
 #include <SFML\Graphics\Color.hpp>
+#include <SFML\Network.hpp>
 
 using namespace sf;
 using namespace std;
@@ -13,7 +14,6 @@ using namespace std;
 
 int main()
 {
-	int a = 5;
 	State *all = new State();
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Pralka invaders 2: Revenge of Pralka");
 	Clock stoper;
@@ -47,10 +47,7 @@ int main()
 		{		
 			all->playerShoot();
 		}
-		
-		//all->removeMachine(contener);
-		//
-		//all->removeBullet(bulletContener);
+
 		all->bulletsAreMoving(&window, all);
 		all->setPlayerPosition(horizontal, vertical);
 		all->changeState();
