@@ -9,7 +9,7 @@ WashingMachine::WashingMachine(const Texture &tex)
 
 	//Texture *texy = new Texture(tex);
 	_sprite.setTexture(tex);
-
+	dead = false;
 	_sprite.setScale(0.02, 0.02);
 }
 
@@ -27,16 +27,28 @@ WashingMachine::WashingMachine(int x, const Texture &tex) : WashingMachine(tex)
 void WashingMachine::move(int vectorY)
 {
 	_sprite.move(0, vectorY);
+	if (_sprite.getPosition().y > HEIGHT)
+		dead = true;
 }
 
 bool WashingMachine::operator==(const WashingMachine &other)
 {
-	//if (this->_sprite.getPosition().x != other._sprite.getPosition().x)
-	//	return false;
-	//if (this->_sprite.getPosition().y != other._sprite.getPosition().y)
-	//	return false;
-	//return true;
 	if (this == &other)
 		return true;
 	return false;
+}
+
+Sprite WashingMachine::getSprite()
+{
+	return _sprite;
+}
+
+bool WashingMachine::isMachineDead()
+{
+	return dead;
+}
+
+void WashingMachine::killMachine()
+{
+	dead = true;
 }

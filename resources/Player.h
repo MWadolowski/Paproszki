@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include <vector>
+#include "Bullet.h"
 
 using namespace sf;
 
@@ -10,6 +12,7 @@ private:
 	Texture playerTex;
 	Texture backTex;
 	Sprite player;
+	vector<Bullet> playersBullets;
 
 public:
 	Player();
