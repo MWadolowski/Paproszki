@@ -88,8 +88,7 @@ void State::draw(RenderWindow *window)
 	{
 		if(bullet->isBulletDead() == false)
 			window->draw(bullet->getShape());
-	}
-	//taki foreach w cpp dla vectora
+	}//taki foreach w cpp dla vectora
 	window->display();
 }
 
