@@ -3,6 +3,7 @@
 #include "WashingMachine.h"
 #include "Bullet.h"
 #include "constans.h"
+#include <SFML\Network.hpp>
 using namespace sf;
 using namespace std;
 
@@ -24,6 +25,7 @@ private:
 	Sprite *otherPlayers = new Sprite[2];
 	vector<Bullet*> bulletContener;
 	vector<WashingMachine*> machineContener;
+	UdpSocket _connectionManager;
 
 public:
 	State();
@@ -41,5 +43,7 @@ public:
 	void playerShoot();
 	void bulletsAreMoving(RenderWindow *_window, State *state);
 	void updateObjects();
+	void sendState();
+	void receiveState();
 };
 

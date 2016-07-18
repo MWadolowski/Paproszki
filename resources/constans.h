@@ -8,3 +8,4 @@
 #define BULLET_DELAY 1
 #define BULLET_TIMER 50
 #define NEW_BULLET_NUMBER 1
+#define START_PORT 8888

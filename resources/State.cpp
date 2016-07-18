@@ -13,7 +13,6 @@ State::State()
 	backTex.setRepeated(true);
 	background.setTexture(backTex);
 	background.setTextureRect(IntRect(0, 0, 800, 500));
-	//playerTex.loadFromFile("samolot.png");
 	playerTex.loadFromFile("destroyer.png");
 	pralka.loadFromFile("pralka.jpg");
 	for (int i = 0; i < 2;i++)
@@ -181,4 +180,12 @@ void State::updateObjects()
 			size = bulletContener.size();
 		}
 	}
+}
+
+void State::sendState()
+{
+}
+
+void State::receiveState()
+{
 }

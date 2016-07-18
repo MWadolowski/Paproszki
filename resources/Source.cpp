@@ -7,6 +7,8 @@
 #include "Bullet.h"
 #include <SFML\Graphics\Color.hpp>
 #include <SFML\Network.hpp>
+#include "LoginScreen.h"
+#include "ConnectionWizard.h"
 
 using namespace sf;
 using namespace std;
@@ -21,6 +23,11 @@ int main()
 	int vertical;
 	int horizontal;
 	int whichSpeed = 0;
+
+	LoginScreen loginScreen;
+	loginScreen.run(&window);
+	ConnectionWizard a;
+
 	while (window.isOpen())
 	{
 		stoper.restart();
