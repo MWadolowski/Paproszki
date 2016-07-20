@@ -16,7 +16,7 @@ using namespace std;
 
 int main()
 {
-	State *all = new State();
+	State all;
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Pralka invaders 2: Revenge of Pralka");
 	Clock stoper;
 	srand(time(NULL));
@@ -26,7 +26,9 @@ int main()
 
 	LoginScreen loginScreen;
 	loginScreen.run(&window);
-	ConnectionWizard a;
+	IpAddress adress(loginScreen.getIP());
+	ConnectionWizard wizard(adress, loginScreen.getNick());
+	wizard.initialise();
 
 	while (window.isOpen())
 	{
@@ -41,24 +43,24 @@ int main()
 			if (Keyboard::isKeyPressed(Keyboard::Escape))
 				window.close();			
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Left) && all->getPlayerPosition().x > 30)
+		if (Keyboard::isKeyPressed(Keyboard::Left) && all.getPlayerPosition().x > 30)
 			horizontal -= 1;
-		if (Keyboard::isKeyPressed(Keyboard::Right) && all->getPlayerPosition().x < WIDTH - 30)
+		if (Keyboard::isKeyPressed(Keyboard::Right) && all.getPlayerPosition().x < WIDTH - 30)
 			horizontal += 1;
-		if (Keyboard::isKeyPressed(Keyboard::Up) && all->getPlayerPosition().y >= HEIGHT - 50 - 100 + 30)
+		if (Keyboard::isKeyPressed(Keyboard::Up) && all.getPlayerPosition().y >= HEIGHT - 50 - 100 + 30)
 			vertical -= 1;
-		if (Keyboard::isKeyPressed(Keyboard::Down) && all->getPlayerPosition().y <= HEIGHT - 30)
+		if (Keyboard::isKeyPressed(Keyboard::Down) && all.getPlayerPosition().y <= HEIGHT - 30)
 			vertical += 1;//event.type == Event::KeyPressed && event.key.code == Key::Escape
 		//Keyboard::isKeyPressed(Keyboard::Space)
 		if (Keyboard::isKeyPressed(Keyboard::Space))
 		{		
-			all->playerShoot();
+			all.playerShoot();
 		}
 
-		all->bulletsAreMoving(&window, all);
-		all->setPlayerPosition(horizontal, vertical);
-		all->changeState();
-		all->draw(&window);
+		all.bulletsAreMoving(&window, &all);
+		all.setPlayerPosition(horizontal, vertical);
+		all.changeState();
+		all.draw(&window);
 		while (stoper.getElapsedTime().asMilliseconds() < 3.f);
 	}
 	return 0;

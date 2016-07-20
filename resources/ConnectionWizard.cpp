@@ -1,14 +1,20 @@
 #include "ConnectionWizard.h"
+//#include <string.h>
 
-ConnectionWizard::ConnectionWizard() : ConnectionWizard("127.0.0.1") { }
+ConnectionWizard::ConnectionWizard() : ConnectionWizard("127.0.0.1", "User") { }
 
-ConnectionWizard::ConnectionWizard(IpAddress adress)
+ConnectionWizard::ConnectionWizard(IpAddress adress, String nick)
 {
 	_adress = adress;
-	Packet request;
-	IpAddress myAdress = IpAddress::getLocalAddress();
-	IpAddress conf("192.168.56.1");
-	request;
+	_nick = nick;
 }
 
 ConnectionWizard::~ConnectionWizard() { }
+
+void ConnectionWizard::initialise()
+{
+	Packet request;
+	request << _nick;
+	_initializer.send(request, _adress, START_PORT);
+	_initializer.receive(request, _adress, _newPort);
+}
